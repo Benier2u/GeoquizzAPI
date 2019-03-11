@@ -15,7 +15,7 @@ public class Serie {
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Photo> photos;
 
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Partie> parties;
 
     public Serie() {

@@ -1,5 +1,7 @@
 package org.lpro.geoquizz.boundary;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.lpro.geoquizz.Exception.NotFound;
 import org.lpro.geoquizz.entity.Partie;
 import org.lpro.geoquizz.entity.Photo;
@@ -11,8 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 @RequestMapping(value = "/series", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -82,9 +84,43 @@ public class SerieRepresentation {
         return sr.findById(id)
                 .map(serie -> {
                     partie.setId(UUID.randomUUID().toString());
+                    String jwtToken = Jwts.builder().setSubject(partie.getId()).claim("roles", "serie").setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact();
                     partie.setSerie(serie);
+                    partie.setToken(jwtToken);
+                    partie.setScore(0);
+                    partie.setStatus("En cours");
                     par.save(partie);
-                    return new ResponseEntity<>(HttpStatus.CREATED);
-                }).orElseThrow( () -> new NotFound("Photo inexistante"));
+                    par.findById(partie.getId()).map(partie1 -> {
+                        for (int i = 0; i < 10; i++) {
+                            pr.findById(pr.find1random().getId()).map(photo -> {
+                                System.out.println(partie1.getId()+" "+photo.getId());
+                                photo.setPartie(partie1);
+                                pr.save(photo);
+                                return 0;
+                            });
+                        }
+                        return 0;
+                    });
+
+                    return new ResponseEntity<>(partie,HttpStatus.CREATED);
+                }).orElseThrow( () -> new NotFound("Serie inexistante"));
+//        return sr.findById(id)
+//                .map(serie -> {
+//                    partie.setId(UUID.randomUUID().toString());
+//                    partie.setSerie(serie);
+//                    par.save(partie);
+//                    return new ResponseEntity<>(HttpStatus.CREATED);
+//                }).orElseThrow( () -> new NotFound("Photo inexistante"));
     }
 }
+
+
+//        return par.findById(id_partie)
+//                .map(partie -> {
+//                return pr.findById(id_photo)
+//                .map(photo -> {
+//                photo.setPartie(partie);
+//                par.save(partie);
+//                return new ResponseEntity<>(HttpStatus.CREATED);
+//        }).orElseThrow( () -> new NotFound("Photo inexistante"));
+//        }).orElseThrow( () -> new NotFound("Partie inexistante"));

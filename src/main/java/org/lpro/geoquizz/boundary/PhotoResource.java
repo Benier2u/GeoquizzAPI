@@ -11,5 +11,5 @@ public interface PhotoResource extends CrudRepository<Photo, String> {
     List<Photo> findByPartieId(String id);
 
     @Query(nativeQuery=true, value="SELECT *  FROM photo ORDER BY random() LIMIT 1")
-    Photo find1random();
+    List<Photo> find1random();
 }

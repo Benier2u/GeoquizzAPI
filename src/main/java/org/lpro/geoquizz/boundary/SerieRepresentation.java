@@ -89,19 +89,23 @@ public class SerieRepresentation {
                     partie.setToken(jwtToken);
                     partie.setScore(0);
                     partie.setStatus("En cours");
-                    par.save(partie);
-                    par.findById(partie.getId()).map(partie1 -> {
-                        for (int i = 0; i < 10; i++) {
-                            pr.findById(pr.find1random().getId()).map(photo -> {
-                                System.out.println(partie1.getId()+" "+photo.getId());
-                                photo.setPartie(partie1);
-                                pr.save(photo);
-                                return 0;
-                            });
-                        }
-                        return 0;
-                    });
 
+                    Set<Photo> photos = new HashSet<Photo>();
+                    for (int i = 0; i < 10; i++) {
+                        pr.findById(pr.find1random().get(0).getId()).map(photo -> photos.add(photo));
+                    }
+                    partie.setPhotos(photos);
+                    par.save(partie);
+//                    par.findById(partie.getId()).map(partie1 -> {
+//                        for (int i = 0; i < 10; i++) {
+//                            pr.findById(pr.find1random().getId()).map(photo -> {
+//                                photo.setPartie(partie1);
+//                                pr.save(photo);
+//                                return 0;
+//                            });
+//                        }
+//                        return 0;
+//                    });
                     return new ResponseEntity<>(partie,HttpStatus.CREATED);
                 }).orElseThrow( () -> new NotFound("Serie inexistante"));
 //        return sr.findById(id)

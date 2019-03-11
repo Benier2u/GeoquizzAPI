@@ -1,7 +1,9 @@
 package org.lpro.geoquizz.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Partie {
@@ -14,8 +16,32 @@ public class Partie {
     private Integer score;
     private String joueur;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "serie_id", nullable = false)
+    @JsonIgnore
+    private Serie serie;
+
+    @OneToMany(mappedBy = "partie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Photo> photos;
+
     public Partie() {
 
+    }
+
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
+    }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
     }
 
     public Partie(String token, Integer nb_photos, String status, Integer score, String joueur) {

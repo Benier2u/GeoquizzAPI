@@ -18,22 +18,22 @@ public class Photo {
     @JsonIgnore
     private Serie serie;
 
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "partie_id", nullable = false)
-//    @JsonIgnore
-//    private Partie partie;
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "partie_id", nullable = true)
+    @JsonIgnore
+    private Partie partie;
+
+    public Partie getPartie() {
+        return partie;
+    }
+
+    public void setPartie(Partie partie) {
+        this.partie = partie;
+    }
 
     public Photo() {
 
     }
-
-//    public Partie getPartie() {
-//        return partie;
-//    }
-//
-//    public void setPartie(Partie partie) {
-//        this.partie = partie;
-//    }
 
     public Serie getSerie() {
         return serie;

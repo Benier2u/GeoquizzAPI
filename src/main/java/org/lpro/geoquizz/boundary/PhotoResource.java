@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PhotoResource extends CrudRepository<Photo, String> {
     List<Photo> findBySerieId(String id);
+    List<Photo> findByPartieId(String id);
+
 }

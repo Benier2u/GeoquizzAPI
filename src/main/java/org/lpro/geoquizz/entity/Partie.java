@@ -21,20 +21,20 @@ public class Partie {
     @JsonIgnore
     private Serie serie;
 
-//    @OneToMany(mappedBy = "partie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Photo> photos;
+    @OneToMany(mappedBy = "partie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Photo> photos;
+
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
+    }
 
     public Partie() {
 
     }
-
-//    public Set<Photo> getPhotos() {
-//        return photos;
-//    }
-//
-//    public void setPhotos(Set<Photo> photos) {
-//        this.photos = photos;
-//    }
 
     public Serie getSerie() {
         return serie;

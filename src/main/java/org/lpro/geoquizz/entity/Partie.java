@@ -21,20 +21,20 @@ public class Partie {
     @JsonIgnore
     private Serie serie;
 
-    @OneToMany(mappedBy = "partie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Photo> photos;
+//    @OneToMany(mappedBy = "partie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<Photo> photos;
 
     public Partie() {
 
     }
 
-    public Set<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(Set<Photo> photos) {
-        this.photos = photos;
-    }
+//    public Set<Photo> getPhotos() {
+//        return photos;
+//    }
+//
+//    public void setPhotos(Set<Photo> photos) {
+//        this.photos = photos;
+//    }
 
     public Serie getSerie() {
         return serie;
@@ -44,12 +44,13 @@ public class Partie {
         this.serie = serie;
     }
 
-    public Partie(String token, Integer nb_photos, String status, Integer score, String joueur) {
+    public Partie(String token, Integer nb_photos, String status, Integer score, String joueur, Serie serie) {
         this.token = token;
         this.nb_photos = nb_photos;
         this.status = status;
         this.score = score;
         this.joueur = joueur;
+        this.serie = serie;
     }
 
     public String getId() {

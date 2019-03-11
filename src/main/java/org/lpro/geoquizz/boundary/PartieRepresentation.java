@@ -41,7 +41,7 @@ public class PartieRepresentation {
         return Optional.ofNullable(pr.findById(id))
                 .filter(Optional::isPresent)
                 .map(partie -> new ResponseEntity<>(partie.get(),HttpStatus.OK))
-                .orElseThrow( () -> new NotFound("Intervenant inexistant"));
+                .orElseThrow( () -> new NotFound("Partie inexistante"));
     }
 
     @GetMapping("/{ID}/photos")
@@ -49,6 +49,6 @@ public class PartieRepresentation {
         return Optional.ofNullable(pr.findById(id))
                 .filter(Optional::isPresent)
                 .map(partie -> new ResponseEntity<>(partie.get(),HttpStatus.OK))
-                .orElseThrow( () -> new NotFound("Intervenant inexistant"));
+                .orElseThrow( () -> new NotFound("Partie inexistante"));
     }
 }

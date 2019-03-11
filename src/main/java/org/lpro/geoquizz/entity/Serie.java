@@ -12,8 +12,8 @@ public class Serie {
     private String map_refs;
     private Integer Dist;
 
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Partie> parties;
+//    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<Partie> parties;
 
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Photo> photos;
@@ -28,20 +28,6 @@ public class Serie {
 
     public void setPhotos(Set<Photo> photos) {
         this.photos = photos;
-    }
-
-    public Set<Partie> getParties() {
-        return parties;
-    }
-
-    public void setParties(Set<Partie> parties) {
-        this.parties = parties;
-    }
-
-    public Serie(String ville, String map_refs, Integer dist) {
-        this.ville = ville;
-        this.map_refs = map_refs;
-        Dist = dist;
     }
 
     public String getId() {

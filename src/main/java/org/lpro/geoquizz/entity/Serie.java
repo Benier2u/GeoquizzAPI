@@ -12,14 +12,22 @@ public class Serie {
     private String map_refs;
     private Integer Dist;
 
-//    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Partie> parties;
-
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Photo> photos;
 
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Partie> parties;
+
     public Serie() {
 
+    }
+
+    public Set<Partie> getParties() {
+        return parties;
+    }
+
+    public void setParties(Set<Partie> parties) {
+        this.parties = parties;
     }
 
     public Set<Photo> getPhotos() {

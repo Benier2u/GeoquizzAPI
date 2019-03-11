@@ -1,6 +1,7 @@
 package org.lpro.geoquizz.boundary;
 
 import org.lpro.geoquizz.Exception.NotFound;
+import org.lpro.geoquizz.entity.Partie;
 import org.lpro.geoquizz.entity.Photo;
 import org.lpro.geoquizz.entity.Serie;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -20,10 +21,12 @@ public class SerieRepresentation {
 
     private final SerieResource sr;
     private final PhotoResource pr;
+    private final PartieResource par;
 
-    public SerieRepresentation(SerieResource sr, PhotoResource pr) {
+    public SerieRepresentation(SerieResource sr, PhotoResource pr, PartieResource par) {
         this.sr = sr;
         this.pr = pr;
+        this.par = par;
     }
 
     @GetMapping
@@ -48,7 +51,7 @@ public class SerieRepresentation {
     }
 
     @GetMapping("/{ID}/photos")
-    public ResponseEntity<?> getSandwichByCategorieId(@PathVariable("ID") String id) throws NotFound {
+    public ResponseEntity<?> getPhotoBySerieId(@PathVariable("ID") String id) throws NotFound {
         if (!sr.existsById(id)){
             throw new NotFound("Serie inexistante");
         }
@@ -56,12 +59,31 @@ public class SerieRepresentation {
     }
 
     @PostMapping("/{ID}/photos")
-    public ResponseEntity<?> ajoutSandwich(@PathVariable("ID") String id, @RequestBody Photo photo) throws NotFound {
+    public ResponseEntity<?> ajoutPhoto(@PathVariable("ID") String id, @RequestBody Photo photo) throws NotFound {
         return sr.findById(id)
                 .map(serie -> {
                     photo.setId(UUID.randomUUID().toString());
                     photo.setSerie(serie);
                     pr.save(photo);
+                    return new ResponseEntity<>(HttpStatus.CREATED);
+                }).orElseThrow( () -> new NotFound("Photo inexistante"));
+    }
+
+    @GetMapping("/{ID}/parties")
+    public ResponseEntity<?> getPartieBySerieId(@PathVariable("ID") String id) throws NotFound {
+        if (!sr.existsById(id)){
+            throw new NotFound("Serie inexistante");
+        }
+        return new ResponseEntity<>(par.findBySerieId(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/{ID}/parties")
+    public ResponseEntity<?> ajoutPartie(@PathVariable("ID") String id, @RequestBody Partie partie) throws NotFound {
+        return sr.findById(id)
+                .map(serie -> {
+                    partie.setId(UUID.randomUUID().toString());
+                    partie.setSerie(serie);
+                    par.save(partie);
                     return new ResponseEntity<>(HttpStatus.CREATED);
                 }).orElseThrow( () -> new NotFound("Photo inexistante"));
     }

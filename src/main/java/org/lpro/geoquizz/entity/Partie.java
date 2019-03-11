@@ -44,15 +44,6 @@ public class Partie {
         this.serie = serie;
     }
 
-    public Partie(String token, Integer nb_photos, String status, Integer score, String joueur, Serie serie) {
-        this.token = token;
-        this.nb_photos = nb_photos;
-        this.status = status;
-        this.score = score;
-        this.joueur = joueur;
-        this.serie = serie;
-    }
-
     public String getId() {
         return id;
     }

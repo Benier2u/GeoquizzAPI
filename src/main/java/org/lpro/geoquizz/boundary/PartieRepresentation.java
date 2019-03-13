@@ -52,19 +52,6 @@ public class PartieRepresentation {
         }
         return new ResponseEntity<>(pr.findByPartiesId(id), HttpStatus.OK);
     }
-
-    @PostMapping("/{ID_Partie}/photos/{ID_Photo}")
-    public ResponseEntity<?> addPhotoInPartie(@PathVariable("ID_Partie") String id_partie, @PathVariable("ID_Photo") String id_photo) throws NotFound {
-        return par.findById(id_partie)
-                .map(partie -> {
-                    return pr.findById(id_photo)
-                            .map(photo -> {
-//                                photo.setPartie(partie);
-                                par.save(partie);
-                                return new ResponseEntity<>(HttpStatus.CREATED);
-                            }).orElseThrow( () -> new NotFound("Photo inexistante"));
-                }).orElseThrow( () -> new NotFound("Partie inexistante"));
-    }
 }
 
 

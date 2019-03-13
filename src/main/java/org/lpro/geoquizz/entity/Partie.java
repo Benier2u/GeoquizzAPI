@@ -1,6 +1,5 @@
 package org.lpro.geoquizz.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -24,19 +23,11 @@ public class Partie {
     @JsonIgnore
     private Serie serie;
 
-//    @OneToMany(mappedBy = "partie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-//    @JoinColumn(name = "partie_id", nullable = true)
-//    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "pp",
             joinColumns = @JoinColumn(name = "partie_id", referencedColumnName = "partie_id" ),
             inverseJoinColumns = @JoinColumn(name = "photo_id", referencedColumnName = "photo_id"))
     private Set<Photo> photos = new HashSet<Photo>();
-
-
-//    private Set<Photo> photos;
-
 
     public Set<Photo> getPhotos() {
         return photos;

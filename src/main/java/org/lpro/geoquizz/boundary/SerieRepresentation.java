@@ -6,20 +6,12 @@ import org.lpro.geoquizz.Exception.NotFound;
 import org.lpro.geoquizz.entity.Partie;
 import org.lpro.geoquizz.entity.Photo;
 import org.lpro.geoquizz.entity.Serie;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 @RestController
@@ -100,19 +92,9 @@ public class SerieRepresentation {
                     Set<Photo> photos = new HashSet<Photo>();
                     for (int i = 0; i < 10; i++) {
                         Photo photo = pr.find1random().get(0);
-                        System.out.println(photo.toString());
                         photos.add(photo);
                     }
                     partie.setPhotos(photos);
-//                    
-//                    for (int i = 0; i < 10; i++) {
-//                        pr.findById(pr.find1random().get(0).getId()).ifPresent(photo -> {
-//                            photos.add(photo);
-//                            photo.setPartie(partie);
-//                        });
-//
-//                    }
-//                    partie.setPhotos(photos);
                     par.save(partie);
                     return new ResponseEntity<>(partie,HttpStatus.CREATED);
                 }).orElseThrow( () -> new NotFound("Serie inexistante"));

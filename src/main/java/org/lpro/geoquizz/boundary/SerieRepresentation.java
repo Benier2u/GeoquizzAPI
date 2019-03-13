@@ -6,6 +6,7 @@ import org.lpro.geoquizz.Exception.NotFound;
 import org.lpro.geoquizz.entity.Partie;
 import org.lpro.geoquizz.entity.Photo;
 import org.lpro.geoquizz.entity.Serie;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,9 @@ import java.util.*;
 @RequestMapping(value = "/series", produces = MediaType.APPLICATION_JSON_VALUE)
 @ExposesResourceFor(Serie.class)
 public class SerieRepresentation {
+
+    @Value("${addresse.for.open.docker.to.the.world}")
+    private String addresse;
 
     private final SerieResource sr;
     private final PhotoResource pr;
@@ -60,11 +64,12 @@ public class SerieRepresentation {
 
     @PostMapping("/{ID}/photos")
     public ResponseEntity<?> ajoutPhoto(@PathVariable("ID") String id, @RequestBody Photo photo) throws NotFound {
+
         return sr.findById(id)
                 .map(serie -> {
                     photo.setId(UUID.randomUUID().toString());
                     photo.setSerie(serie);
-                    photo.setUrl("http://6377e1c0.ngrok.io/images/"+ photo.getId());
+                    photo.setUrl(addresse + "/images/" + photo.getId());
                     pr.save(photo);
                     return new ResponseEntity<>(photo.getId(),HttpStatus.CREATED);
                 }).orElseThrow( () -> new NotFound("Photo inexistante"));

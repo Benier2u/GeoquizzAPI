@@ -90,10 +90,11 @@ public class SerieRepresentation {
                     partie.setStatus("En cours");
 
                     Set<Photo> photos = new HashSet<Photo>();
-                    List<Photo> listPhoto = pr.findRandomPhoto();
-                    partie.setNb_photos(listPhoto.size());
-                    
-                    for (int i = 0; i < 10; i++) {
+                    List<Photo> listPhoto = pr.findRandomPhoto(serie);
+                    int taille = listPhoto.size();
+                    partie.setNb_photos(taille);
+
+                    for (int i = 0; i < taille; i++) {
                         photos.add(listPhoto.get(i));
                     }
                     partie.setPhotos(photos);

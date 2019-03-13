@@ -10,6 +10,6 @@ public interface PhotoResource extends CrudRepository<Photo, String> {
     List<Photo> findBySerieId(String id);
     List<Photo> findByPartiesId(String id);
 
-    @Query(nativeQuery=true, value="SELECT *  FROM photo ORDER BY random() LIMIT 1")
-    List<Photo> find1random();
+    @Query(nativeQuery=true, value="SELECT *  FROM photo ORDER BY random() LIMIT 10")
+    List<Photo> findRandomPhoto();
 }

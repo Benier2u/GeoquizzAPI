@@ -64,7 +64,7 @@ public class Photo {
     public void setId(String id) {
         this.id = id;
     }
-    
+
     public String getPosition() {
         return position;
     }

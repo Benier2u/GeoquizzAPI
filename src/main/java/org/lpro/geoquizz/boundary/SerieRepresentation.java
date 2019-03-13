@@ -72,9 +72,9 @@ public class SerieRepresentation {
                 .map(serie -> {
                     photo.setId(UUID.randomUUID().toString());
                     photo.setSerie(serie);
-                    photo.setUrl("http://192.168.99.100:8080/images/"+ photo.getId());
+                    photo.setUrl("http://6377e1c0.ngrok.io/images/"+ photo.getId());
                     pr.save(photo);
-                    return new ResponseEntity<>("Rename img with : "+photo.getId(),HttpStatus.CREATED);
+                    return new ResponseEntity<>(photo.getId(),HttpStatus.CREATED);
                 }).orElseThrow( () -> new NotFound("Photo inexistante"));
     }
 

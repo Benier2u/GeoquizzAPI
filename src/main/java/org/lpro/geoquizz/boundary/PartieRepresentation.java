@@ -36,6 +36,15 @@ public class PartieRepresentation {
                 .orElseThrow( () -> new NotFound("Partie inexistante"));
     }
 
+    @DeleteMapping("/{ID}")
+    public ResponseEntity<?> deletePartieById(@PathVariable("ID") String id) {
+        return par.findById(id)
+                .map(partie -> {
+                    par.delete(partie);
+                    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                }).orElseThrow( () -> new NotFound("Partie inexistante"));
+    }
+
     @GetMapping("/{ID}/photos")
     public ResponseEntity<?> getPhotoBySerieId(@PathVariable("ID") String id) throws NotFound {
         if (!par.existsById(id)){

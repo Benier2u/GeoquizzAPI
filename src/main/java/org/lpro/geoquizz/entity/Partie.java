@@ -1,14 +1,17 @@
 package org.lpro.geoquizz.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class Partie {
 
     @Id
+    @Column(name = "partie_id")
     private String id;
     private String token;
     private Integer nb_photos;
@@ -21,8 +24,19 @@ public class Partie {
     @JsonIgnore
     private Serie serie;
 
-    @OneToMany(mappedBy = "partie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Photo> photos;
+//    @OneToMany(mappedBy = "partie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+//    @JoinColumn(name = "partie_id", nullable = true)
+//    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "pp",
+            joinColumns = @JoinColumn(name = "partie_id", referencedColumnName = "partie_id" ),
+            inverseJoinColumns = @JoinColumn(name = "photo_id", referencedColumnName = "photo_id"))
+    private Set<Photo> photos = new HashSet<Photo>();
+
+
+//    private Set<Photo> photos;
+
 
     public Set<Photo> getPhotos() {
         return photos;

@@ -50,7 +50,7 @@ public class PartieRepresentation {
         if (!par.existsById(id)){
             throw new NotFound("Partie inexistante");
         }
-        return new ResponseEntity<>(pr.findByPartieId(id), HttpStatus.OK);
+        return new ResponseEntity<>(pr.findByPartiesId(id), HttpStatus.OK);
     }
 
     @PostMapping("/{ID_Partie}/photos/{ID_Photo}")
@@ -59,7 +59,7 @@ public class PartieRepresentation {
                 .map(partie -> {
                     return pr.findById(id_photo)
                             .map(photo -> {
-                                photo.setPartie(partie);
+//                                photo.setPartie(partie);
                                 par.save(partie);
                                 return new ResponseEntity<>(HttpStatus.CREATED);
                             }).orElseThrow( () -> new NotFound("Photo inexistante"));

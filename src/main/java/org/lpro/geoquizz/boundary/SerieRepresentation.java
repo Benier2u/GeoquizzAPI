@@ -99,13 +99,20 @@ public class SerieRepresentation {
 
                     Set<Photo> photos = new HashSet<Photo>();
                     for (int i = 0; i < 10; i++) {
-                        pr.findById(pr.find1random().get(0).getId()).ifPresent(photo -> {
-                            photos.add(photo);
-                            photo.setPartie(partie);
-                        });
-
+                        Photo photo = pr.find1random().get(0);
+                        System.out.println(photo.toString());
+                        photos.add(photo);
                     }
                     partie.setPhotos(photos);
+//                    
+//                    for (int i = 0; i < 10; i++) {
+//                        pr.findById(pr.find1random().get(0).getId()).ifPresent(photo -> {
+//                            photos.add(photo);
+//                            photo.setPartie(partie);
+//                        });
+//
+//                    }
+//                    partie.setPhotos(photos);
                     par.save(partie);
                     return new ResponseEntity<>(partie,HttpStatus.CREATED);
                 }).orElseThrow( () -> new NotFound("Serie inexistante"));

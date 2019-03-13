@@ -2,6 +2,8 @@ package org.lpro.geoquizz.boundary;
 
 import org.lpro.geoquizz.Exception.NotFound;
 import org.lpro.geoquizz.entity.Photo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

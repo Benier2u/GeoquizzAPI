@@ -9,7 +9,7 @@ services:
   networks: 
    - isolated_nw2
   volumes:
-   - /tmp
+   - ./img:/app/tmp/img
   container_name: restservice
   depends_on:
    - pgdb

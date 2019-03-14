@@ -1,18 +1,41 @@
 version: '3.3'
 services:
- restservice:
+ restserviceback:
   build:
-   context: .
-   dockerfile: restservice.dockerfile
+   context: ./GeoQuizzBack
+   dockerfile: restserviceback.dockerfile
   ports:
    - "8080:8080"
   networks: 
    - isolated_nw2
   volumes:
    - ./img:/app/tmp/img
-  container_name: restservice
+  container_name: restserviceback
   depends_on:
    - pgdb
+ restservicemobile:
+  build:
+   context: ./GeoQuizzMobile
+   dockerfile: restservicemobile.dockerfile
+  ports:
+   - "8081:8081"
+  networks: 
+   - isolated_nw2
+  container_name: restservicemobile
+  depends_on:
+   - pgdb
+ restserviceplayer:
+  build:
+   context: ./GeoQuizzPlayer
+   dockerfile: restserviceplayer.dockerfile
+  ports:
+   - "8082:8082"
+  networks: 
+   - isolated_nw2
+  container_name: restserviceplayer
+  depends_on:
+   - pgdb
+   
 
  pgdb:
   image: postgres
@@ -21,9 +44,9 @@ services:
   networks:
    - isolated_nw2
   environment:
-   POSTGRES_DB: postgres
-   POSTGRES_USER: postgres
-   POSTGRES_PASSWORD: riovas
+   pOSTGRES_DB: postgres
+   pOSTGRES_USER: postgres
+   pOSTGRES_pASSWORD: riovas
   container_name: postgres
 
 networks:

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name="geoquizz-back")
 @RibbonClient(name="geoquizz-back")
 @RequestMapping(value = "/series", produces = MediaType.APPLICATION_JSON_VALUE)
-public interface SerieRepresentation {
+public interface InterfaceSerieRepresentation {
 
     @GetMapping
     ResponseEntity<?> getSeries();

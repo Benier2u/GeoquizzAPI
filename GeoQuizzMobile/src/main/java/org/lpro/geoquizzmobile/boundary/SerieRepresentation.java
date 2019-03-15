@@ -1,5 +1,6 @@
 package org.lpro.geoquizzmobile.boundary;
 
+import org.lpro.geoquizzmobile.entity.Photo;
 import org.lpro.geoquizzmobile.entity.Serie;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.http.MediaType;
@@ -17,5 +18,8 @@ public interface SerieRepresentation {
 
     @PostMapping
     ResponseEntity<?> postSerie(@RequestBody Serie serie);
+
+    @PostMapping("/{ID}/photos")
+    ResponseEntity<?> ajoutPhoto(@PathVariable("ID") String id, @RequestBody Photo photo);
 
 }

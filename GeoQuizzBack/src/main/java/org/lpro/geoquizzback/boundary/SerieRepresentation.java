@@ -3,10 +3,7 @@ package org.lpro.geoquizzback.boundary;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.lpro.geoquizzback.Exception.NotFound;
-import org.lpro.geoquizzback.entity.Partie;
-import org.lpro.geoquizzback.entity.PartieNoDetail;
-import org.lpro.geoquizzback.entity.Photo;
-import org.lpro.geoquizzback.entity.Serie;
+import org.lpro.geoquizzback.entity.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.HttpHeaders;
@@ -37,7 +34,19 @@ public class SerieRepresentation {
 
     @GetMapping
     public ResponseEntity<?> getSeries() {
-        return new ResponseEntity<>(sr.findAll(), HttpStatus.OK);
+        Iterable<Serie> series = sr.findAll();
+
+        ArrayList<SerieNoDetail> serieNoDetail = new ArrayList<>();
+
+        series.forEach(ele -> {
+            SerieNoDetail serie = new SerieNoDetail();
+            serie.setId(ele.getId());
+            serie.setMap_refs(ele.getMap_refs());
+            serie.setVille(ele.getVille());
+            serie.setDist(ele.getDist());
+            serieNoDetail.add(serie);
+        });
+        return new ResponseEntity<>(serieNoDetail, HttpStatus.OK);
     }
 
     @PostMapping

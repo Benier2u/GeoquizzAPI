@@ -4,7 +4,7 @@
 -- INSERT INTO app_user (id,first_name, last_name, password, username) VALUES ('2', 'Admin', 'Admin', '$2a$10$qtH0F1m488673KwgAfFXEOWxsoZSeHqqlB/8BTt3a6gsI5c2mdlfe', 'admin.admin');
 
 -- SERIE
-INSERT INTO serie(id,ville,map_refs,Dist) VALUES ('3ce141a0-2354-49b5-9d26-66e198f8d486','Nancy','46.1651 6.8998',1);
+INSERT INTO serie(id,ville,map_refs,Dist) VALUES ('3ce141a0-2354-49b5-9d26-66e198f8d486','Nancy','48.692054 6.184417',1);
 
 -- PHOTO
 INSERT INTO photo(photo_id,serie_id,url,position,description) VALUES ('197a63d8-1baa-45da-9344-59ca1bea51b1','3ce141a0-2354-49b5-9d26-66e198f8d486','https://back-geoquizzatelier.pagekite.me/images/197a63d8-1baa-45da-9344-59ca1bea51b1','48.6935244 6.1832861','Place Stanislas');

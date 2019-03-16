@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.lpro.geoquizzback.Exception.NotFound;
 import org.lpro.geoquizzback.entity.Partie;
+import org.lpro.geoquizzback.entity.PartieNoDetail;
 import org.lpro.geoquizzback.entity.Photo;
 import org.lpro.geoquizzback.entity.Serie;
 import org.springframework.beans.factory.annotation.Value;
@@ -105,7 +106,12 @@ public class SerieRepresentation {
                     }
                     partie.setPhotos(photos);
                     par.save(partie);
-                    return new ResponseEntity<>(partie,HttpStatus.CREATED);
+
+                    PartieNoDetail partieNoDetail = new PartieNoDetail();
+                    partieNoDetail.setId(partie.getId());
+                    partieNoDetail.setToken(partie.getToken());
+
+                    return new ResponseEntity<Object>(partieNoDetail,HttpStatus.CREATED);
                 }).orElseThrow( () -> new NotFound("Serie inexistante"));
     }
 }

@@ -7,6 +7,7 @@ CREATE TABLE serie (
     map_refs varchar(255) DEFAULT NULL,
     dist bigint(20) DEFAULT NULL,
 );
+
 CREATE TABLE partie (
     PRIMARY KEY (partie_id),
     partie_id varchar(255) DEFAULT NULL,
@@ -37,32 +38,11 @@ CREATE TABLE pp (
     PRIMARY KEY (partie_id, photo_id)
 );
 
--- CREATE TABLE app_user (
---     id  varchar(255) DEFAULT NULL,
---     first_name varchar(255) DEFAULT NULL,
---     last_name varchar(255) DEFAULT NULL,
---     password varchar(255) DEFAULT NULL,
---     username varchar(255) DEFAULT NULL,
---     PRIMARY KEY (id)
--- );
-
-
---
--- CREATE TABLE sandwich (
---     PRIMARY KEY (id),
---     id varchar(255) DEFAULT NULL,
---     nom varchar(255) DEFAULT NULL,
---     description varchar(255) DEFAULT NULL,
---     pain varchar(255) DEFAULT NULL,
---     prix bigint(20) DEFAULT NULL,
---     categorie_id varchar(255) DEFAULT NULL,
---     FOREIGN KEY (categorie_id) REFERENCES categorie(id),
--- );
---
--- CREATE TABLE facture (
---     PRIMARY KEY (id),
---     id varchar(255) DEFAULT NULL,
---     nom varchar(255) DEFAULT NULL,
---     date_paiement varchar(255) DEFAULT NULL,
---     montant bigint(20) DEFAULT NULL,
--- );
+CREATE TABLE app_user (
+    id  varchar(255) DEFAULT NULL,
+    first_name varchar(255) DEFAULT NULL,
+    last_name varchar(255) DEFAULT NULL,
+    password varchar(255) DEFAULT NULL,
+    username varchar(255) DEFAULT NULL,
+    PRIMARY KEY (id)
+);

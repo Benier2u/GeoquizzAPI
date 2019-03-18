@@ -36,8 +36,7 @@ public class ImageController {
 
     private final Logger logger = LoggerFactory.getLogger(ImageController.class);
     private static String UPLOADED_FOLDER = "./tmp/img/";
-
-    @PostMapping("images/upload/multi")
+    @PostMapping("/images/upload")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile uploadfile) {
         logger.debug("File upload!");
 

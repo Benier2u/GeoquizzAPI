@@ -49,6 +49,11 @@ public class SerieRepresentation {
         return new ResponseEntity<>(serieNoDetail, HttpStatus.OK);
     }
 
+    @GetMapping("/details")
+    public ResponseEntity<?> getSeriesDetail() {
+        return new ResponseEntity<>(sr.findAll(), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<?> postSerie(@RequestBody Serie serie) {
         serie.setId(UUID.randomUUID().toString());
@@ -75,7 +80,6 @@ public class SerieRepresentation {
 
     @PostMapping("/{ID}/photos")
     public ResponseEntity<?> ajoutPhoto(@PathVariable("ID") String id, @RequestBody Photo photo) throws NotFound {
-
         return sr.findById(id)
                 .map(serie -> {
                     photo.setSerie(serie);

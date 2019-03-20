@@ -1,7 +1,5 @@
-
--- -- USER (password: jwtpass)
-INSERT INTO app_user (id,first_name, last_name, password, username) VALUES ('1', 'John', 'Doe', '$2a$10$bj7qFEPpCcYOPqncrWQAnOGZ3onz78ipBoykaV9vidBFZxmhcfcHa', 'john.doe');
--- INSERT INTO app_user (id,first_name, last_name, password, username) VALUES ('2', 'Admin', 'Admin', '$2a$10$qtH0F1m488673KwgAfFXEOWxsoZSeHqqlB/8BTt3a6gsI5c2mdlfe', 'admin.admin');
+-- USER
+INSERT INTO app_user(id, username, password) VALUES('zce141a0-2354-49b5-9d26-66e198f8d486','ADMIN', 'ADMIN');
 
 -- SERIE
 INSERT INTO serie(id,ville,map_refs,Dist) VALUES ('3ce141a0-2354-49b5-9d26-66e198f8d486','Nancy','48.692054 6.184417',1);

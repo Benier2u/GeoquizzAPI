@@ -13,7 +13,6 @@ public class PrivateRepresentation {
     public ResponseEntity<?> getPrivateConnection() {
         return new ResponseEntity<>("Connexion privée", HttpStatus.OK);
     }
-
 }
 
 

@@ -17,3 +17,11 @@
   + pagekite.py 192.168.99.100:8080 back-geoquizzatelier.pagekite.me
   + pagekite.py 192.168.99.100:8081 mobile-geoquizzatelier.pagekite.me
   + pagekite.py 192.168.99.100:8082 player-geoquizzatelier.pagekite.me
+  
+  
+### Routes Swagger
+  Une fois que tout est lancé.
+  
+  https://back-geoquizzatelier.pagekite.me/swagger-ui.html
+  https://player-geoquizzatelier.pagekite.me/swagger-ui.html
+  https://mobile-geoquizzatelier.pagekite.me/swagger-ui.html

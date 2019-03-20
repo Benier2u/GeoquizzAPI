@@ -5,16 +5,11 @@
   + ROBERT Alexandre
   + LEMMER Richard
   + BENIER Hugo
-  
-### Prérequis :
-  + Maven
-  + Docker
-  + Docker-compose
 
 ### Commandes :
 
-  + git clone ...
-  + 'mvn clean install' pour chaque projet (GeoQuizzBack, GeoQuizzMobile, GeoQuizzplayer)
+  + git clone git@github.com:Benier2u/GeoquizzBack.git
+  + 'mvn clean install' pour tout les projets (GeoQuizzBack, GeoQuizzMobile, GeoQuizzplayer)
   + repertoire parent : docker-compose up --build -d
   
 ### Micro service vers internet : pagekite

@@ -6,10 +6,7 @@ import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -35,5 +32,14 @@ public class PhotoRepresentation {
                 .filter(Optional::isPresent)
                 .map(photo -> new ResponseEntity<>(photo.get(),HttpStatus.OK))
                 .orElseThrow( () -> new NotFound("Photo inexistante"));
+    }
+
+    @DeleteMapping("/{ID}")
+    public ResponseEntity<?> deleteMethode(@PathVariable("ID") String id) throws NotFound {
+        return pr.findById(id)
+                .map(photo -> {
+                    pr.delete(photo);
+                    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                }).orElseThrow( () -> new NotFound("Photo inexistante"));
     }
 }

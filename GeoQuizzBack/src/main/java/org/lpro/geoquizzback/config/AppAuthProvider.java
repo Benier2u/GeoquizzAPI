@@ -19,7 +19,6 @@ public class AppAuthProvider extends DaoAuthenticationProvider {
         String password = auth.getCredentials()
                 .toString();
         User user = userDetailsService.loadUserByUsername(name);
-        System.out.println(user.getPassword()+" "+password);
         if (verifyHash(password,user.getPassword())) {
             return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         } else {

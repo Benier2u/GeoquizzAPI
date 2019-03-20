@@ -8,8 +8,6 @@ services:
    - "8080:8080"
   networks: 
    - isolated_nw2
-  volumes:
-   - ./img:/app/tmp/img
   container_name: restserviceback
   depends_on:
    - pgdb

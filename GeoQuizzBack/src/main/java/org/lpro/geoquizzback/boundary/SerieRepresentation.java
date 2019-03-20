@@ -83,7 +83,7 @@ public class SerieRepresentation {
         return sr.findById(id)
                 .map(serie -> {
                     photo.setSerie(serie);
-                    photo.setUrl(addresse + "/images/" + photo.getId());
+                    photo.setUrl(addresse + photo.getId());
                     pr.save(photo);
                     return new ResponseEntity<>(HttpStatus.CREATED);
                 }).orElseThrow( () -> new NotFound("Photo inexistante"));
